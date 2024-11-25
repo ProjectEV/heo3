@@ -13,6 +13,7 @@ public class BoardsDTO {
 	private String boards_productid;
 	
 	
+	
 	public String getBoards_productid() {
 		return boards_productid;
 	}

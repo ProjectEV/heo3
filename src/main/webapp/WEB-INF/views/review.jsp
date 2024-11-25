@@ -126,11 +126,12 @@
                             	  <br><br><br><br><br>
                             
                             	<div class="review-stars">
-         							<span>&#9733;</span>
-         							<span>&#9733;</span>
-  								    <span>&#9733;</span>
-         							<span>&#9733;</span>
-         							<span>&#9733;</span>
+         							<span class="star">&#9733;</span>
+         							<span class="star">&#9733;</span>
+  								    <span class="star">&#9733;</span>
+         							<span class="star">&#9733;</span>
+         							<span class="star">&#9733;</span>
+         							<input type="hidden" id="rating" name="rating" >
       							</div>
                             		
                              	<p class="form-label">제목 <span>*</span></p>
@@ -142,10 +143,11 @@
          							<span>&#128247; 사진/동영상 첨부하기</span>
 						      	</div>
 						      	<br><br>
+						      	 <input type="hidden" name="boards_userid" id="boards_userid" value="${user_id}" >
 								<button type="submit" class="site-btn">작성완료</button>
 			                    <button type="reset" class="site-btn">다시 작성</button>
 			                   
-			                    <input type="hidden" name="boards_userid" id="boards_userid" value="${user_id}" >
+			                  
 			                           
                             </form>
                         </div>
@@ -178,6 +180,25 @@
             }
         });
     });
+    
+ 		// 별점 클릭 이벤트 처리
+    	$('.star').click(function() {
+        // 부모 요소의 모든 자식 span 요소에서 'on' 클래스를 제거
+        $(this).parent().children('span').removeClass('on');
+
+        // 클릭된 별에 'on' 클래스를 추가하고, 그 이전의 모든 형제 span에 'on' 클래스를 추가
+        $(this).addClass('on').prevAll('span').addClass('on');
+
+        // 선택된 별점 개수를 구하여 변수에 저장
+        const rating = $(this).parent().children('span.on').length;
+        alert(rating);
+
+        // 'rating' 값을 hidden input에 저장
+        $('#rating').val(rating);
+    });
+    
+    
+    
 </script>
 	
 
